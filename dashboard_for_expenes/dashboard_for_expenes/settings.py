@@ -129,3 +129,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 default_app_config = 'base.apps.BaseConfig'
+
+LOGIN_REDIRECT_URL = 'expenses/main_page/'
