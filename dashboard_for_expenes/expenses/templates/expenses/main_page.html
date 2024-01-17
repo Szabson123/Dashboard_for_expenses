@@ -1,18 +1,23 @@
 <h1>Your Expense Dashboard</h1>
 
+
+<button><a href="#">Add earnings</a></button>
 {% for earning in earnings %}
   <li>
-    {{ earning.name }} -- {{ earning.money }}
+    {{ earning.name }} -- {{ earning.money }}zł
   </li>
 {% empty %}
   <p>Nie masz jeszcze żadnych danych</p>
 {% endfor %}
 
 
+<button><a href="#">Add expenses</a></button>
 {% for expense in expenses %}
   <li>
-    {{ expense.name }} -- {{ expense.cost }}
+    {{ expense.name }} -- {{ expense.cost }}zł
   </li>
 {% empty %}
   <p>Nie masz jeszcze żadnych danych</p>
 {% endfor %}
+
+<p>Your Balance {{ balance }}zł </p>

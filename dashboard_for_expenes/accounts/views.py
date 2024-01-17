@@ -9,7 +9,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('main_page')
+            return redirect('login')
     else:
         form=UserRegisterForm()
         
