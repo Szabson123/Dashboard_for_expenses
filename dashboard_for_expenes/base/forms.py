@@ -2,7 +2,7 @@ from django import forms
 
 from django.contrib.auth.forms import UserCreationForm
 
-from base.models import Profile, Expense, User, Earnings
+from base.models import Profile, Expense, User, Earnings, Dashboard
 
 class UserRegisterForm(UserCreationForm):
     
@@ -25,3 +25,10 @@ class AddExpenses(forms.ModelForm):
     class Meta:
         model = Expense        
         fields = ['name', 'cost', 'descripton']
+        
+
+class AddDashboard(forms.ModelForm):
+    
+    class Meta:
+        model = Dashboard        
+        fields = ['name', 'target', 'description']

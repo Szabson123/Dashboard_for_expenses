@@ -1,25 +1,9 @@
-<h1>Your Expense Dashboard</h1>
-
-
-<button><a href="{% url 'earnings_form'%}">Add earnings</a></button>
-{% for earning in earnings %}
+<h1>Moje Dashbordy</h1>
+{% for dashboard in object_list %}
   <li>
-    {{ earning.name }} -- {{ earning.money }}zł
+    <a href="{% url 'dashboard' dashboard.id %}">{{ dashboard.name }}</a>
   </li>
 {% empty %}
-  <p>Nie masz jeszcze żadnych danych</p>
+<p>Nie masz żadnego dashboardu</p>
 {% endfor %}
-<p>W sumie zarobiłeś {{ total_earnigs }}zł</p>
-
-<button><a href="{% url 'expenses_form' %}">Add expenses</a></button>
-{% for expense in expenses %}
-  <li>
-    {{ expense.name }} -- {{ expense.cost }}zł
-  </li>
-{% empty %}
-  <p>Nie masz jeszcze żadnych danych</p>
-{% endfor %}
-<p>W sumie wydałeś {{ total_expenses }}zł</p>
-
-
-<p>Your Balance {{ balance }}zł </p>
+<p><a href="{% url 'createdashboard' %}">Dodaj Dashboard</a></p>
