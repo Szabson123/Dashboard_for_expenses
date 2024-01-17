@@ -19,3 +19,12 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
     
+    
+class Earnings(models.Model):
+    name = models.CharField(max_length=255)
+    money = models.DecimalField(max_digits=15, decimal_places=2)
+    description = models.TextField()
+    date = models.DateTimeField(default=datetime.now, blank=True)
+    
+    def __str__(self):
+        return self.name
