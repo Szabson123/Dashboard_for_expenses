@@ -1,1 +1,18 @@
-<h1>Siema Siema</h1>
+<h1>Your Expense Dashboard</h1>
+
+{% for earning in earnings %}
+  <li>
+    {{ earning.name }} -- {{ earning.money }}
+  </li>
+{% empty %}
+  <p>Nie masz jeszcze żadnych danych</p>
+{% endfor %}
+
+
+{% for expense in expenses %}
+  <li>
+    {{ expense.name }} -- {{ expense.cost }}
+  </li>
+{% empty %}
+  <p>Nie masz jeszcze żadnych danych</p>
+{% endfor %}
