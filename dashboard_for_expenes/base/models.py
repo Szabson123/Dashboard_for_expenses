@@ -24,7 +24,7 @@ class Profile(models.Model):
 class Earnings(models.Model):
     name = models.CharField(max_length=255)
     money = models.DecimalField(max_digits=15, decimal_places=2)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     date = models.DateTimeField(default=datetime.now, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
