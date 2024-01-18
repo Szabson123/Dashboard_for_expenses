@@ -2,7 +2,7 @@ from django import forms
 
 from django.contrib.auth.forms import UserCreationForm
 
-from base.models import Profile, Expense, User, Earnings, Dashboard
+from base.models import Profile, Expense, User, Earnings, Dashboard, Directorie
 
 class UserRegisterForm(UserCreationForm):
     
@@ -32,3 +32,15 @@ class AddDashboard(forms.ModelForm):
     class Meta:
         model = Dashboard        
         fields = ['name', 'target', 'description']
+        
+
+class AddDirectorie(forms.ModelForm):
+    dashboard = forms.ModelChoiceField(
+        queryset=Dashboard.objects.all(),
+        empty_label="Wybierz dashboard",
+        label="Dashboard"
+    )
+    
+    class Meta:
+        model = Directorie
+        fields = ['name', 'amount', 'dashboard']
