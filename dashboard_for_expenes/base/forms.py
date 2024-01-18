@@ -17,11 +17,11 @@ class AddEarinings(forms.ModelForm):
     
     class Meta:
         model = Earnings
-        fields = ['name', 'money', 'description']
+        fields = ['name', 'money', 'description', 'directorie']
         
 
 class AddExpenses(forms.ModelForm):
-    
+
     class Meta:
         model = Expense        
         fields = ['name', 'cost', 'descripton']
