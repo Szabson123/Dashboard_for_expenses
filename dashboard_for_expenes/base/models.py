@@ -42,3 +42,13 @@ class Earnings(models.Model):
     
     def __str__(self):
         return self.name
+    
+
+class Directorie(models.Model):
+    name = models.CharField(max_length=255)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    dashboard = models.ForeignKey(Dashboard, on_delete=models.CASCADE, related_name='catalog', null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.name
