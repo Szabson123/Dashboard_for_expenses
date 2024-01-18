@@ -2,7 +2,7 @@
 from typing import Any
 
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, TemplateView, CreateView
+from django.views.generic import ListView, TemplateView, CreateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 
@@ -32,11 +32,13 @@ class CreateDashboard(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
     
 
-class DetailDashboardPage(LoginRequiredMixin, TemplateView):
+class DetailDashboardPage(LoginRequiredMixin, DetailView):
+    model = Dashboard
     template_name = 'expenses/detail_dashboard_page.html'
     
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
+        dashboard = self.get_object()
         
         total_expenses = Expense.objects.filter(user=self.request.user).aggregate(Sum('cost'))['cost__sum'] or 0
         total_earnigs = Earnings.objects.filter(user=self.request.user).aggregate(Sum('money'))['money__sum'] or 0
@@ -46,6 +48,7 @@ class DetailDashboardPage(LoginRequiredMixin, TemplateView):
         context['total_expenses'] = total_expenses
         
         context['balance'] = total_earnigs - total_expenses
+        context['target'] = dashboard.target
         
         context["expenses"] = Expense.objects.filter(user=self.request.user)
         context["earnings"] = Earnings.objects.filter(user=self.request.user)
