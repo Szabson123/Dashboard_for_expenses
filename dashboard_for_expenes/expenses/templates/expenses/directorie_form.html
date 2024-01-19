@@ -1,3 +1,13 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'expenses/style.css' %}">
+</head>
+
 <h2>Dodaj zarobek</h2>
   <form method="post">
     {% csrf_token %}

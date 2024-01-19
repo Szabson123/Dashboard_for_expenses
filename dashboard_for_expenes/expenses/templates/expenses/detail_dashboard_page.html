@@ -1,40 +1,50 @@
-<h1>Your Expense Dashboard</h1>
+{% load static %}
 
-<h3>Twój cel to: {{dashboard.target}}</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'expenses/style.css' %}">
+</head>
 
-{% for directorie in directories %}
-    <div>
-        <h3>{{ directorie.name }}</h3>
-        <p>Amount: {{ directorie.amount }}</p>
-    </div>
-{% empty %}
-    <p>Brak folderów.</p>
-{% endfor %}
+<div class="container">
+    <h1>Your Expense Dashboard</h1>
 
-<button><a href="{% url 'earnings_form_without_directorie' dashboard_id=dashboard_id %}">Add earnings</a></button>
+    <h3>Twój cel to: {{dashboard.target}}</h3>
 
-{% for earning in earnings %}
-  <li>
-    {{ earning.name }} -- {{ earning.money }}zł
-  </li>
-    <a href="{% url 'edit_earnings' pk=earning.pk %}">Edytuj,</a>
-    <a href="{% url 'delete_earnings' pk=earning.pk %}">Usuń</a>
-{% empty %}
-  <p>Nie masz jeszcze żadnych danych</p>
-{% endfor %}
-<p>W sumie zarobiłeś {{ total_earnigs }}zł</p>
+    {% for directorie in directories %}
+        <div>
+            <h3>{{ directorie.name }}</h3>
+            <p>Amount: {{ directorie.amount }}</p>
+        </div>
+    {% empty %}
+        <p>Brak folderów.</p>
+    {% endfor %}
 
-<button><a href="{% url 'expenses_form_without_directorie' dashboard_id=dashboard_id %}">Add expenses</a></button>
-{% for expense in expenses %}
-  <li>
-    {{ expense.name }} -- {{ expense.cost }}zł
-  </li>
-    <a href="{% url 'edit_expenses' pk=expense.pk %}">Edytuj</a>
-    <a href="{% url 'delete_expenses' pk=expense.pk %}">Usuń</a>
-{% empty %}
-  <p>Nie masz jeszcze żadnych danych</p>
-{% endfor %}
-<p>W sumie wydałeś {{ total_expenses }}zł</p>
+    <a class="button add r" href="{% url 'earnings_form_without_directorie' dashboard_id=dashboard_id %}">Add earnings</a>
+
+    {% for earning in earnings %}
+      <div class="list-item">
+        <span class="item-text">{{ earning.name }} -- {{ earning.money }}zł</span>
+        <a class="button edit" href="{% url 'edit_earnings' pk=earning.pk %}">Edytuj</a>
+        <a class="button delete" href="{% url 'delete_earnings' pk=earning.pk %}">Usuń</a>
+      </div>
+    {% empty %}
+      <p>Nie masz jeszcze żadnych danych</p>
+    {% endfor %}
+        <p>W sumie zarobiłeś {{total_earnigs}}zł</p>
+        <a class="button add r" href="{% url 'expenses_form_without_directorie' dashboard_id=dashboard_id %}">Add expenses</a>
+        {% for expense in expenses %}
+      <div class="list-item">
+        <span class="item-text">{{ expense.name }} -- {{ expense.cost }}zł</span>
+        <a class="button edit" href="{% url 'edit_expenses' pk=expense.pk %}">Edytuj</a>
+        <a class="button delete" href="{% url 'delete_expenses' pk=expense.pk %}">Usuń</a>
+      </div>
+    {% empty %}
+      <p>Nie masz jeszcze żadnych danych</p>
+    {% endfor %}
 
 
-<p>Your Balance {{ balance }}zł </p>
+    <p>Your Balance {{ balance }}zł </p>
+</div>

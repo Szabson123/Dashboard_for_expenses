@@ -1,0 +1,139 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 700px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.button {
+    display: inline-block;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #4cae4c;
+}
+
+.button.edit {
+    background-color: #f0ad4e;
+}
+
+.button.edit:hover {
+    background-color: #ec971f;
+}
+
+.button.delete {
+    background-color: #d9534f;
+}
+
+.button.delete:hover {
+    background-color: #c9302c;
+}
+
+
+.button.add {
+    background-color: #337ab7;
+}
+
+.button.add.r {
+    background-color: green;
+}
+
+.button.add:hover {
+    background-color: #286090;
+}
+
+
+.add-buttons {
+    text-align: center;
+    margin: 20px 0;
+}
+
+
+.list-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 20px auto;
+}
+
+
+.list-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+.list-item {
+    background: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    list-style-type: none;
+}
+
+/* Stylowanie linków w liście */
+.list-item a {
+    text-decoration: none;
+}
+
+.list-item a:hover {
+    text-decoration: underline;
+}
+
+
+.add-dashboard-btn {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.add-dashboard-btn:hover {
+    background-color: #4cae4c;
+}
