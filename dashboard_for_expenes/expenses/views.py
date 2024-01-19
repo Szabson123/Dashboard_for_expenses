@@ -39,17 +39,19 @@ class DetailDashboardPage(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         dashboard = self.get_object()
-        
+
+        directories = Directorie.objects.filter(dashboard=dashboard, user=self.request.user)
         total_expenses = Expense.objects.filter(user=self.request.user).aggregate(Sum('cost'))['cost__sum'] or 0
         total_earnigs = Earnings.objects.filter(user=self.request.user).aggregate(Sum('money'))['money__sum'] or 0
-        
+
+        context['directories'] = directories
         context['dashboard_id'] = self.kwargs.get('pk')
         context['total_earnigs'] = total_earnigs
         context['total_expenses'] = total_expenses
         
         context['balance'] = total_earnigs - total_expenses
         context['target'] = dashboard.target
-        
+
         context["expenses"] = Expense.objects.filter(user=self.request.user)
         context["earnings"] = Earnings.objects.filter(user=self.request.user)
         return context
@@ -103,7 +105,7 @@ class AddExpenses(LoginRequiredMixin, CreateView):
         return reverse('dashboard', kwargs={'pk': dashboard_id})
     
 
-class CreateDirectiorie(LoginRequiredMixin, CreateView):
+class CreateDirectorie(LoginRequiredMixin, CreateView):
     template_name = 'expenses/directorie_form.html'
     model = Directorie
     form_class = AddDirectorie

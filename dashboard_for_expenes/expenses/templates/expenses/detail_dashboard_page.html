@@ -2,6 +2,16 @@
 
 <h3>Twój cel to: {{dashboard.target}}</h3>
 
+{% for directorie in directories %}
+    <div>
+        <h3>{{ directorie.name }}</h3>
+        <p>Amount: {{ directorie.amount }}</p>
+        <!-- Inne szczegóły folderu -->
+    </div>
+{% empty %}
+    <p>Brak folderów.</p>
+{% endfor %}
+
 <button><a href="{% url 'earnings_form_without_directorie' dashboard_id=dashboard_id %}">Add earnings</a></button>
 
 {% for earning in earnings %}
