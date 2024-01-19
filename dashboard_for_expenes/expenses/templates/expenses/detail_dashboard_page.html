@@ -6,7 +6,6 @@
     <div>
         <h3>{{ directorie.name }}</h3>
         <p>Amount: {{ directorie.amount }}</p>
-        <!-- Inne szczegóły folderu -->
     </div>
 {% empty %}
     <p>Brak folderów.</p>
@@ -18,6 +17,8 @@
   <li>
     {{ earning.name }} -- {{ earning.money }}zł
   </li>
+    <a href="{% url 'edit_earnings' pk=earning.pk %}">Edytuj,</a>
+    <a href="{% url 'delete_earnings' pk=earning.pk %}">Usuń</a>
 {% empty %}
   <p>Nie masz jeszcze żadnych danych</p>
 {% endfor %}
@@ -28,6 +29,8 @@
   <li>
     {{ expense.name }} -- {{ expense.cost }}zł
   </li>
+    <a href="{% url 'edit_expenses' pk=expense.pk %}">Edytuj</a>
+    <a href="{% url 'delete_expenses' pk=expense.pk %}">Usuń</a>
 {% empty %}
   <p>Nie masz jeszcze żadnych danych</p>
 {% endfor %}

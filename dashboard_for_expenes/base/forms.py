@@ -44,4 +44,4 @@ class AddDirectorie(forms.ModelForm):
     
     class Meta:
         model = Directorie
-        fields = ['name', 'amount', 'dashboard']
+        fields = ['name', 'amount', 'dashboard', ]

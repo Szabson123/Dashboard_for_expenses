@@ -2,9 +2,9 @@
 from typing import Any
 
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, TemplateView, CreateView, DeleteView, DetailView
+from django.views.generic import ListView, TemplateView, CreateView, DeleteView, DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from base.models import Expense, User, Earnings, Dashboard, Directorie
 from base.forms import AddEarinings, AddExpenses, AddDashboard, AddDirectorie
@@ -114,3 +114,47 @@ class CreateDirectorie(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class EarningsUpdateView(LoginRequiredMixin, UpdateView):
+    model = Earnings
+    form_class = AddEarinings
+    template_name = 'expenses/earnings_form.html'
+    success_url = reverse_lazy('main_page')
+
+
+class EarningsDeleteView(LoginRequiredMixin, DeleteView):
+    model = Earnings
+    template_name = 'expenses/earnings_confirm_delete.html'
+    success_url = reverse_lazy('main_page')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dashboard_pk'] = self.object.dashboard.pk
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(user=self.request.user)
+
+
+class ExpenseUpdateView(LoginRequiredMixin, UpdateView):
+    model = Expense
+    form_class = AddExpenses
+    template_name = 'expenses/expenses_form.html'
+    success_url = reverse_lazy('main_page')
+
+
+class ExpenseDeleteView(LoginRequiredMixin, DeleteView):
+    model = Expense
+    template_name = 'expenses/expenses_confirm_delete.html'
+    success_url = reverse_lazy('main_page')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dashboard_pk'] = self.object.dashboard.pk
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(user=self.request.user)
