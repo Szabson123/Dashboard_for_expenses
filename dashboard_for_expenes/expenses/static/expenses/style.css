@@ -75,6 +75,9 @@ ul li {
 .button.add.r {
     background-color: green;
 }
+.button.add.b {
+    background-color: blue;
+}
 
 .button.add:hover {
     background-color: #286090;

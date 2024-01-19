@@ -11,7 +11,9 @@
 <div class="container">
     <h1>Your Expense Dashboard</h1>
 
-    <h3>Twój cel to: {{dashboard.target}}</h3>
+    <h3>Your target: {{dashboard.target}}</h3>
+
+    <a class="button add r" href="{% url 'directorie' dashboard_id=dashboard.pk %}">Add Folder</a>
 
     {% for directorie in directories %}
         <div>
@@ -19,7 +21,7 @@
             <p>Amount: {{ directorie.amount }}</p>
         </div>
     {% empty %}
-        <p>Brak folderów.</p>
+        <p>No Folders.</p>
     {% endfor %}
 
     <a class="button add r" href="{% url 'earnings_form_without_directorie' dashboard_id=dashboard_id %}">Add earnings</a>
@@ -27,24 +29,27 @@
     {% for earning in earnings %}
       <div class="list-item">
         <span class="item-text">{{ earning.name }} -- {{ earning.money }}zł</span>
-        <a class="button edit" href="{% url 'edit_earnings' pk=earning.pk %}">Edytuj</a>
-        <a class="button delete" href="{% url 'delete_earnings' pk=earning.pk %}">Usuń</a>
+        <a class="button edit" href="{% url 'edit_earnings' pk=earning.pk %}">Edit</a>
+        <a class="button delete" href="{% url 'delete_earnings' pk=earning.pk %}">Delete</a>
       </div>
     {% empty %}
-      <p>Nie masz jeszcze żadnych danych</p>
+      <p>You have no data</p>
     {% endfor %}
-        <p>W sumie zarobiłeś {{total_earnigs}}zł</p>
+        <p>Total earnings {{total_earnigs}}zł</p>
         <a class="button add r" href="{% url 'expenses_form_without_directorie' dashboard_id=dashboard_id %}">Add expenses</a>
         {% for expense in expenses %}
       <div class="list-item">
         <span class="item-text">{{ expense.name }} -- {{ expense.cost }}zł</span>
-        <a class="button edit" href="{% url 'edit_expenses' pk=expense.pk %}">Edytuj</a>
-        <a class="button delete" href="{% url 'delete_expenses' pk=expense.pk %}">Usuń</a>
+        <a class="button edit" href="{% url 'edit_expenses' pk=expense.pk %}">Edit</a>
+        <a class="button delete" href="{% url 'delete_expenses' pk=expense.pk %}">Delete</a>
       </div>
     {% empty %}
-      <p>Nie masz jeszcze żadnych danych</p>
+      <p>You have no data</p>
     {% endfor %}
 
 
     <p>Your Balance {{ balance }}zł </p>
+
+    <a class="button add b" href="{% url 'main_page' %}">Back To Dashboards</a>
+
 </div>

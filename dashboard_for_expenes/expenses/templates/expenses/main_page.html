@@ -4,12 +4,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Moje Dashboardy</title>
+    <title>Your Dashboards</title>
     <link rel="stylesheet" type="text/css" href="{% static 'expenses/style.css' %}">
 </head>
 <body>
     <div class="list-container">
-        <h2 class="list-title">Moje Dashboardy</h2>
+        <h2 class="list-title">Your Dashboards</h2>
         <ul>
             {% for dashboard in object_list %}
                 <li class="list-item">
@@ -17,7 +17,7 @@
                 </li>
             {% endfor %}
         </ul>
-        <a href="{% url 'createdashboard' %}" class="add-dashboard-btn">Dodaj Dashboard</a>
+        <a href="{% url 'createdashboard' %}" class="add-dashboard-btn">Add Dashboard</a>
     </div>
 </body>
 </html>
