@@ -9,6 +9,8 @@ urlpatterns = [
     path('dashboard/<int:dashboard_id>/add_earning/', AddEarnigs.as_view(), name='earnings_form_without_directorie'),
     path('dashboard/<int:dashboard_id>/directorie/<int:directorie_id>/add_earning/', AddEarnigs.as_view(),
          name='earnings_form_with_directorie'),
-    path('dashboard/<int:pk>', AddExpenses.as_view(), name='expenses_form'),
 
+    path('dashboard/<int:dashboard_id>/add_expenses/', AddExpenses.as_view(), name='expenses_form_without_directorie'),
+    path('dashboard/<int:dashboard_id>/directorie/<int:directorie_id>/add_expenses/', AddExpenses.as_view(),
+         name='expenses_form_with_directorie'),
 ]

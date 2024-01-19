@@ -83,23 +83,24 @@ class AddExpenses(LoginRequiredMixin, CreateView):
     template_name = 'expenses/expenses_form.html'
     model = Expense
     form_class = AddExpenses
-    
+
     def form_valid(self, form):
-        
         dashboard_id = self.kwargs.get('dashboard_id')
-        directorie_id = self.kwargs.get('directorie_id')
-        
         dashboard = get_object_or_404(Dashboard, pk=dashboard_id, user=self.request.user)
-        directorie = get_object_or_404(Directorie, pk=directorie_id, user=self.request.user)
 
         form.instance.user = self.request.user
         form.instance.dashboard = dashboard
-        form.instance.directorie = directorie
+
+        directorie_id = self.kwargs.get('directorie_id')
+        if directorie_id:
+            directorie = get_object_or_404(Directorie, pk=directorie_id, user=self.request.user)
+            form.instance.directorie = directorie
+
         return super().form_valid(form)
-    
+
     def get_success_url(self) -> str:
         dashboard_id = self.kwargs.get('dashboard_id')
-        return reverse('dashboard',  kwargs={'dashboard_pk': dashboard_id})
+        return reverse('dashboard', kwargs={'pk': dashboard_id})
     
 
 class CreateDirectiorie(LoginRequiredMixin, CreateView):

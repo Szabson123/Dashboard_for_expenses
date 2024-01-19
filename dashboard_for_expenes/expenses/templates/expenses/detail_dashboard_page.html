@@ -13,7 +13,7 @@
 {% endfor %}
 <p>W sumie zarobiłeś {{ total_earnigs }}zł</p>
 
-<button><a href="{% url 'expenses_form' pk=dashboard_id %}">Add expenses</a></button>
+<button><a href="{% url 'expenses_form_without_directorie' dashboard_id=dashboard_id %}">Add expenses</a></button>
 {% for expense in expenses %}
   <li>
     {{ expense.name }} -- {{ expense.cost }}zł
