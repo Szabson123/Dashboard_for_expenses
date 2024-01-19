@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from base.models import Profile, Expense, User, Earnings, Dashboard, Directorie
 
+
 class UserRegisterForm(UserCreationForm):
     
     email = forms.EmailField(required=True)
@@ -17,7 +18,7 @@ class AddEarinings(forms.ModelForm):
     
     class Meta:
         model = Earnings
-        fields = ['name', 'money', 'description', 'directorie']
+        fields = ['name', 'money', 'description']
         
 
 class AddExpenses(forms.ModelForm):

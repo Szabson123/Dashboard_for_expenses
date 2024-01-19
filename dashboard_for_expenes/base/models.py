@@ -19,7 +19,8 @@ class Dashboard(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Directorie(models.Model):
     name = models.CharField(max_length=255)
     amount = models.DecimalField(max_digits=15, decimal_places=2)
@@ -50,7 +51,7 @@ class Earnings(models.Model):
     date = models.DateTimeField(default=datetime.now, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     dashboard = models.ForeignKey(Dashboard, on_delete=models.CASCADE)
-    directorie = models.ForeignKey(Directorie, on_delete=models.CASCADE, related_name='expenses', null=True)
+    directorie = models.ForeignKey(Directorie, on_delete=models.CASCADE, related_name='earnings', null=True)
     
     def __str__(self):
         return self.name

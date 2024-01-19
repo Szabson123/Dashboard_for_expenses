@@ -1,8 +1,9 @@
 <h1>Your Expense Dashboard</h1>
 
-<h3>Twój cel to: {{ dashboard.target }}</h3>
+<h3>Twój cel to: {{dashboard.target}}</h3>
 
-<button><a href="{% url 'earnings_form' pk=dashboard_id %}">Add earnings</a></button>
+<button><a href="{% url 'earnings_form_without_directorie' dashboard_id=dashboard_id %}">Add earnings</a></button>
+
 {% for earning in earnings %}
   <li>
     {{ earning.name }} -- {{ earning.money }}zł
