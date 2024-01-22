@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 
 from base.models import Expense, User, Earnings, Dashboard, Directorie
-from base.forms import AddEarinings, AddExpenses, AddDashboard, AddDirectorie
+from base.forms import AddEarnings, AddExpenses, AddDashboard, AddDirectorie
 
 
 from django.db.models import Sum
@@ -61,7 +61,7 @@ class DetailDashboardPage(LoginRequiredMixin, DetailView):
 
 class AddEarnigs(LoginRequiredMixin, CreateView):
     model = Earnings
-    form_class = AddEarinings
+    form_class = AddEarnings
     template_name = 'expenses/earnings_form.html'
 
     def form_valid(self, form):
@@ -112,15 +112,24 @@ class CreateDirectorie(LoginRequiredMixin, CreateView):
     model = Directorie
     form_class = AddDirectorie
     success_url = '/expenses/main_page/'
-    
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        dashboard_id = self.kwargs.get('dashboard_id')
+        context['expenses_form'] = AddExpenses()
+        context['earnings_form'] = AddEarnings()
+        context['dashboard_id'] = dashboard_id
+        return context    
+
     def form_valid(self, form):
         form.instance.user = self.request.user
+        form.instance.dashboard_id = self.kwargs.get('dashboard_id')
         return super().form_valid(form)
 
 
 class EarningsUpdateView(LoginRequiredMixin, UpdateView):
     model = Earnings
-    form_class = AddEarinings
+    form_class = AddEarnings
     template_name = 'expenses/earnings_form.html'
     success_url = reverse_lazy('main_page')
 

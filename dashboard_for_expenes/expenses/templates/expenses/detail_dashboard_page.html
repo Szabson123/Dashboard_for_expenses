@@ -13,7 +13,7 @@
 
     <h3>Your target: {{dashboard.target}}</h3>
 
-    <a class="button add r" href="{% url 'directorie' dashboard_id=dashboard.pk %}">Add Folder</a>
+    <a class="button add r" href="{% url 'create_directorie' dashboard_id=dashboard.pk %}">Add Folder</a>
 
     {% for directorie in directories %}
         <div>

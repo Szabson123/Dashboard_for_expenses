@@ -8,6 +8,20 @@
     <link rel="stylesheet" type="text/css" href="{% static 'expenses/style.css' %}">
 </head>
 
+<form method="post" action="{% url 'expenses_form_with_directorie' dashboard_id=dashboard_id directorie_id=directorie_id %}">
+  {% csrf_token %}
+  {{ expenses_form.as_p }}
+  <button type="submit">Dodaj Wydatek</button>
+</form>
+
+<!-- Formularz dla zarobków -->
+<form method="post" action="{% url 'earnings_form_with_directorie' dashboard_id=dashboard_id directorie_id=directorie_id %}">
+  {% csrf_token %}
+  {{ earnings_form.as_p }}
+  <button type="submit">Dodaj Zarobek</button>
+</form>
+
+
 <h2>Dodaj zarobek</h2>
   <form method="post">
     {% csrf_token %}
